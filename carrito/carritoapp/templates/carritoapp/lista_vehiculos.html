@@ -1,0 +1,33 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'carritoapp/estilo_gotico.css' %}">
+
+<h2>Lista de Vehículos</h2>
+<a href="{% url 'crear_vehiculo' %}">Nuevo Vehículo</a>
+<table border="1">
+    <tr>
+        <th>Placa</th>
+        <th>Modelo</th>
+        <th>Marca</th>
+        <th>Foto</th>
+        <th>Taller</th>
+        <th>Acciones</th>
+    </tr>
+    {% for v in vehiculos %}
+    <tr>
+        <td>{{ v.placa }}</td>
+        <td>{{ v.modelo }}</td>
+        <td>{{ v.marca }}</td>
+        <td>
+            {% if v.foto %}
+                <img src="{{ v.foto.url }}" width="60">
+            {% endif %}
+        </td>
+        <td>{{ v.taller.nombre }}</td>
+        <td>
+            <a href="{% url 'editar_vehiculo' v.id %}">Editar</a> |
+            <a href="{% url 'eliminar_vehiculo' v.id %}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'lista_talleres' %}">Ver Talleres</a>

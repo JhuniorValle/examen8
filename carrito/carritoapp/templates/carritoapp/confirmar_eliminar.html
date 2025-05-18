@@ -1,0 +1,10 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'carritoapp/estilo_gotico.css' %}">
+
+<h2>Eliminar {{ tipo }}</h2>
+<p>¿Seguro que deseas eliminar este {{ tipo }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a href="javascript:history.back()">Cancelar</a>
+</form>
